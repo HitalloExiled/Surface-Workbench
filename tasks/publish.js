@@ -2,7 +2,10 @@ const FS       = require('fs');
 const Path     = require('path');
 const Common   = require('./common');
 const modules  = require('./modules');
+const paths    = require('./paths');
 const patterns = require('./patterns');
+
+paths.modules = Path.resolve(__dirname, paths.modules);
 
 async function run()
 {
@@ -19,12 +22,10 @@ async function run()
     
     modules.forEach(x => checkVersion(x));
     toPublish.forEach(x => checkDependencies(x));
-
-    const root = Path.resolve(__dirname, '../Surface/source');
     
     for (let $module of toPublish)
     {
-        let source = Path.normalize(Path.join(root, $module.name));
+        let source = Path.normalize(Path.join(paths.modules, $module.name));
 
         FS.writeFileSync(Path.resolve(source, 'package.json'), JSON.stringify($module, null, 4));
 

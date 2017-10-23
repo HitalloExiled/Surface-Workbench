@@ -12,7 +12,7 @@
       "es2017"
     ],
     "paths": {
-      "@surface/*": ["../../Surface/source/@surface/*"]
+      "@surface/*": ["../node_modules/@surface/*"]
     },
     "sourceMap": true,
     "target":    "es2015",

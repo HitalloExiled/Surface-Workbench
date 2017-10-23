@@ -18,23 +18,10 @@
             "isBuildCommand": true,
             "command":        "cmd",
             "isShellCommand": true,
-            "args":           ["/c", ".\\node_modules\\.bin\\surface -t rebuild"],
+            "args":           ["/c", "node ./node_modules/@surface/compiler/index.js -t rebuild"],
             "options":
             {
-                "cwd": "${workspaceRoot}\\App.Client"
-            },
-            "showOutput":   "always",
-            "isBackground": false
-        },
-        {
-            "taskName":       "surface-watch",
-            "isBuildCommand": true,
-            "command":        "cmd",
-            "isShellCommand": true,
-            "args":           ["/c", ".\\node_modules\\.bin\\surface --task rebuild --watch true"],
-            "options":
-            {
-                "cwd": "${workspaceRoot}\\App.Client"
+                "cwd": "${workspaceRoot}\\client"
             },
             "showOutput":   "always",
             "isBackground": false

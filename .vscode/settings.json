@@ -1,21 +1,20 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "workbench.iconTheme": "vscode-icons",
-    "typescript.tsdk": "App.Client/node_modules/typescript/lib",
     "files.exclude":
     {
-        "**/.git":                   true,
-        "**/.svn":                   true,
-        "**/.hg":                    true,
-        "**/.vs":                    true,
-        "**/.DS_Store":              true,
-        "**/package-lock.json":      true,
-        "**/CVS":                    true,
-        "**/*.config":               true,
-        "**/node_modules":           true,
-        "App.Server/start/**/*.js":  true,
-        "App.Server/start/**/*.map": true,
-        "Surface/**/*.js":           true,
-        "Surface/**/*.map":          true
+        "**/*.config":           true,
+        "**/.git":               true,
+        "**/.hg":                true,
+        "**/.svn":               true,
+        "**/.vs":                true,
+        "**/.DS_Store":          true,
+        "**/CVS":                true,
+        "**/node_modules":       true,
+        "**/package-lock.json":  true,
+        "server/start/**/*.js":  true,
+        "server/start/**/*.map": true,
+        "modules/**/*.js":       true,
+        "modules/**/*.map":      true
     }
 }

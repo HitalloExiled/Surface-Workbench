@@ -57,7 +57,7 @@ typings/
 # dotenv environment variables file
 .env
 
-/App.Server/public/*
+/server/wwwroot/
 *.js
 *.js.map
 *.orig

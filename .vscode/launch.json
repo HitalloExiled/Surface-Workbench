@@ -6,17 +6,17 @@
             "type":          "node",
             "request":       "launch",
             "name":          "Launch Server",
-            "program":       "${workspaceRoot}\\App.Server\\start\\index.js",
-            "cwd":           "${workspaceRoot}\\App.Server"//,
-            //"preLaunchTask": "surface"
+            "program":       "${workspaceRoot}\\server\\start\\index.js",
+            "cwd":           "${workspaceRoot}\\server",
+            "preLaunchTask": "surface"
         },
         {
             "type":     "node",
             "request":  "launch",
             "name":     "Launch Surface Compiler",
-            "program":  "${workspaceRoot}\\App.Client\\node_modules\\@surface\\compiler\\index.js",
-            "args":     ["--task", "rebuild","--env", "dev", "--config", "./surface.config.json", "--watch", "true"],
-            "cwd":      "${workspaceRoot}\\App.Client",
+            "program":  "${workspaceRoot}\\client\\node_modules\\@surface\\compiler\\index.js",
+            "args":     ["--task", "rebuild","--env", "dev", "--config", "./surface.config.json"],
+            "cwd":      "${workspaceRoot}\\client",
             "outFiles": []
         },
         {
@@ -24,7 +24,7 @@
             "request":  "launch",
             "name":     "Launch Build All",
             "program":  "${workspaceRoot}\\tasks\\build",
-            "cwd":      "${workspaceRoot}\\App.Client",
+            "cwd":      "${workspaceRoot}\\client",
             "outFiles": []
         },
         {
@@ -63,9 +63,9 @@
             "type":     "node",
             "request":  "launch",
             "name":     "Launch compiler",
-            "program":  "${workspaceRoot}\\App.Client\\node_modules\\@surface\\compiler\\tasks\\build",
+            "program":  "${workspaceRoot}\\client\\node_modules\\@surface\\compiler\\tasks\\build",
             //"args":     ["project=./"],
-            "cwd":      "${workspaceRoot}\\App.Client",
+            "cwd":      "${workspaceRoot}\\client",
             "protocol": "inspector"
         }
     ]

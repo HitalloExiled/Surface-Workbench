@@ -2,11 +2,12 @@ const FS      = require('fs');
 const Path    = require('path');
 const Common  = require('./common');
 const modules = require('./modules');
+const paths   = require('./paths');
 
 let action = process.argv[2];
 
-let root   = Path.resolve(__dirname, '../Surface/source');
-let client = Path.resolve(__dirname, '../App.Client');
+paths.modules = Path.resolve(__dirname, paths.modules);
+paths.client  = Path.resolve(__dirname, paths.client);
 
 if (action == 'l' || action == 'link')
 {
@@ -27,8 +28,8 @@ async function link()
     {
         for (let dependence of Common.objectToDictionary($module.dependencies).filter(x => x.key.startsWith('@surface/')))
         {
-            let source = Path.normalize(Path.join(root, dependence.key));
-            let target = Path.normalize(Path.join(root, $module.name, 'node_modules'));
+            let source = Path.normalize(Path.join(paths.modules, dependence.key));
+            let target = Path.normalize(Path.join(paths.modules, $module.name, 'node_modules'));
 
             Common.makeDir(Path.join(target, '@surface'));
 
@@ -39,8 +40,8 @@ async function link()
         }
     }
         
-    if (!FS.existsSync(Path.join(client, 'node_modules', '@surface')))
-        await Common.execute(`Linking @surface on client:`, `mklink /J ${Path.join(client, 'node_modules', '@surface')} ${Path.join(root, '@surface')}`);
+    if (!FS.existsSync(Path.join(paths.client, 'node_modules', '@surface')))
+        await Common.execute(`Linking @surface on client:`, `mklink /J ${Path.join(paths.client, 'node_modules', '@surface')} ${Path.join(paths.modules, '@surface')}`);
 
     console.log('Linking done!');
 }
@@ -49,14 +50,14 @@ async function unlink()
 {
     for (let $module of modules)
     {
-        let targetFolder = Path.normalize(Path.join(root, $module.name, 'node_modules', '@surface'));
+        let targetFolder = Path.normalize(Path.join(paths.modules, $module.name, 'node_modules', '@surface'));
 
         if (FS.existsSync(targetFolder))
             await Common.execute(`Removing @surface on ${$module.name}:`, `rmdir /s /q ${targetFolder}`);
     }
 
-    if (FS.existsSync(Path.join(client, 'node_modules', '@surface')))
-        await Common.execute(`Unlinking @surface link on client:`, `rmdir /s /q ${Path.join(client, 'node_modules', '@surface')}`);
+    if (FS.existsSync(Path.join(paths.client, 'node_modules', '@surface')))
+        await Common.execute(`Unlinking @surface link on client:`, `rmdir /s /q ${Path.join(paths.client, 'node_modules', '@surface')}`);
 
     console.log('Unlinking done!');
 }
